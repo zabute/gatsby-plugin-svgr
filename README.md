@@ -1,6 +1,6 @@
 # gatsby-plugin-svgr
 
-## Intalling
+## Installing
 ```
   $ npm install gatsby-plugin-svgr
 ```
@@ -35,7 +35,7 @@ or
   }
   ```
 
-  #### Import your svgs and render them as you would any react component
+  #### Import your SVGs and render them as you would any React component
 
   ```jsx
   import Svg from 'path/to/svg/file.svg';
@@ -43,5 +43,4 @@ or
 
   <Svg/>
   <AnotherSvg/>
-    
   ```
