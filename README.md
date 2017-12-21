@@ -21,7 +21,7 @@ or
     {
       resolve: 'gatsby-plugin-svgr',
       options: {
-        dir: '/some/path' // only process this directory
+        dir: '/some/path', // only process this directory
         // svgr options
         icon: true,
         viewBox: false,
