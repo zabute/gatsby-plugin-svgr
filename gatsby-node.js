@@ -2,6 +2,7 @@ exports.modifyWebpackConfig = ({ config }, options) => {
   const { plugins, dir, ...svgrOptions } = options;
 
   // remove gatsby's url-loader loader for svgs
+  config.removeLoader('url-loader');
   config.loader('url-loader', {
     test: /\.(jpg|jpeg|png|gif|mp4|webm|wav|mp3|m4a|aac|oga)(\?.*)?$/,
     loader: 'url',
