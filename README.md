@@ -1,4 +1,6 @@
-# gatsby-plugin-svgr
+# gatsby-plugin-svgr [![npm version](https://badge.fury.io/js/gatsby-plugin-svgr.svg)](https://badge.fury.io/js/gatsby-plugin-svgr)
+
+[svgr](https://github.com/smooth-code/svgr) plugin for [gatsby](https://www.gatsbyjs.org/)
 
 ## Installing
 ```
@@ -19,9 +21,10 @@ or
     {
       resolve: 'gatsby-plugin-svgr',
       options: {
-        semi: false,
-        singleQuote: true,
-        ref: true,
+        dir: '/some/path', // only process this directory
+        // svgr options
+        icon: true,
+        viewBox: false,
         // see https://github.com/smooth-code/svgr for a list of all options
       },
     },
