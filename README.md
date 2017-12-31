@@ -1,6 +1,6 @@
 # gatsby-plugin-svgr [![npm version](https://badge.fury.io/js/gatsby-plugin-svgr.svg)](https://badge.fury.io/js/gatsby-plugin-svgr)
 
-[svgr](https://github.com/smooth-code/svgr) plugin for [gatsby](https://www.gatsbyjs.org/)
+[SVGR](https://github.com/smooth-code/svgr) plugin for [Gatsby](https://www.gatsbyjs.org)
 
 ## Installing
 
@@ -37,7 +37,7 @@ module.exports = {
 
 ```json
 {
-  "presets" : ["env", "react", "stage-0"]
+  presets: ['env', 'react', 'stage-0']
 }
 ```
 
