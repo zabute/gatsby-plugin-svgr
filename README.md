@@ -4,11 +4,11 @@
 
 ## Installing
 
-```
+```console
 $ npm install gatsby-plugin-svgr
 ```
 or
-```
+```console
 $ yarn add gatsby-plugin-svgr
 ```
 
@@ -33,7 +33,7 @@ module.exports = {
 }
 ```
 
-### Add a ```.babelrc``` to the root of your project
+### Add a `.babelrc` to the root of your project
 
 ```json
 {
