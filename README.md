@@ -14,22 +14,22 @@ $ yarn add gatsby-plugin-svgr
 
 ## Using
 
-### Add it to your ```gatsby-config.js```
+### Add it to your `gatsby-config.js`
 
 ```js
-// gatsby-config.js
-
 module.exports = {
-  {
-    resolve: 'gatsby-plugin-svgr',
-    options: {
-      dir: '/some/path', // only process this directory
-      // svgr options
-      icon: true,
-      viewBox: false,
-      // see https://github.com/smooth-code/svgr for a list of all options
+  plugins: [
+    {
+      resolve: 'gatsby-plugin-svgr',
+      options: {
+        dir: '/some/path', // only process this directory
+        // svgr options
+        icon: true,
+        viewBox: false,
+        // see https://github.com/smooth-code/svgr for a list of all options
+      },
     },
-  },
+  ],
 }
 ```
 
