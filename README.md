@@ -1,23 +1,24 @@
 # gatsby-plugin-svgr [![npm version](https://badge.fury.io/js/gatsby-plugin-svgr.svg)](https://badge.fury.io/js/gatsby-plugin-svgr)
 
-[svgr](https://github.com/smooth-code/svgr) plugin for [gatsby](https://www.gatsbyjs.org/)
+[SVGR](https://github.com/smooth-code/svgr) plugin for [Gatsby](https://www.gatsbyjs.org)
 
 ## Installing
-```
-  $ npm install gatsby-plugin-svgr
+
+```console
+$ npm install gatsby-plugin-svgr
 ```
 or
-
-```
-  $ yarn add gatsby-plugin-svgr
+```console
+$ yarn add gatsby-plugin-svgr
 ```
 
 ## Using
-  #### Add it to your ```gatsby-config.js```
-  ```js
-  // gatsby-config.js
 
-  module.exports = {
+### Add it to your `gatsby-config.js`
+
+```js
+module.exports = {
+  plugins: [
     {
       resolve: 'gatsby-plugin-svgr',
       options: {
@@ -28,22 +29,24 @@ or
         // see https://github.com/smooth-code/svgr for a list of all options
       },
     },
-  }
+  ],
+}
 ```
-  #### Add a ```.babelrc``` to the root of your project
 
-  ```json
-  {
-    "presets" : ["env", "react", "stage-0"]
-  }
-  ```
+### Add a `.babelrc` to the root of your project
 
-  #### Import your SVGs and render them as you would any React component
+```json
+{
+  "presets": ["env", "react", "stage-0"]
+}
+```
 
-  ```jsx
-  import Svg from 'path/to/svg/file.svg';
-  import AnotherSvg from 'path/to/another/svg/file.svg';
+### Import your SVGs and render them as you would any React component
 
-  <Svg/>
-  <AnotherSvg/>
-  ```
+```jsx
+import Svg from 'path/to/svg/file.svg';
+import AnotherSvg from 'path/to/another/svg/file.svg';
+
+<Svg/>
+<AnotherSvg/>
+```
