@@ -14,7 +14,7 @@ or
 
 ## Using
 
-  #### Add it to your ```gatsby-config.js```
+  ### Add it to your ```gatsby-config.js```
 
   ```js
   // gatsby-config.js
@@ -33,7 +33,7 @@ or
   }
 ```
 
-  #### Add a ```.babelrc``` to the root of your project
+  ### Add a ```.babelrc``` to the root of your project
 
   ```json
   {
@@ -41,7 +41,7 @@ or
   }
   ```
 
-  #### Import your SVGs and render them as you would any React component
+  ### Import your SVGs and render them as you would any React component
 
   ```jsx
   import Svg from 'path/to/svg/file.svg';
