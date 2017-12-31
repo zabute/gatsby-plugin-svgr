@@ -37,7 +37,7 @@ module.exports = {
 
 ```json
 {
-  presets: ['env', 'react', 'stage-0']
+  "presets": ["env", "react", "stage-0"]
 }
 ```
 
