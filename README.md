@@ -3,17 +3,19 @@
 [svgr](https://github.com/smooth-code/svgr) plugin for [gatsby](https://www.gatsbyjs.org/)
 
 ## Installing
+
 ```
   $ npm install gatsby-plugin-svgr
 ```
 or
-
 ```
   $ yarn add gatsby-plugin-svgr
 ```
 
 ## Using
+
   #### Add it to your ```gatsby-config.js```
+
   ```js
   // gatsby-config.js
 
@@ -30,6 +32,7 @@ or
     },
   }
 ```
+
   #### Add a ```.babelrc``` to the root of your project
 
   ```json
