@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-svgr",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Svgr plugin for gatsby",
   "repository": {
     "type": "git",
@@ -16,7 +16,11 @@
     "url": "https://github.com/zabute"
   },
   "main": "index.js",
-  "keywords": ["gatsby", "gatsby-plugin", "svgr"],
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "svgr"
+  ],
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
