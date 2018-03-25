@@ -2,6 +2,8 @@
 
 [SVGR](https://github.com/smooth-code/svgr) plugin for [Gatsby](https://www.gatsbyjs.org)
 
+> Thse are the docs for `v1.x.x`. The docs for `v0.x.x` are [here](https://github.com/zabute/gatsby-plugin-svgr/tree/v0.x)
+
 ## Installing
 
 ```console
@@ -12,7 +14,7 @@ or
 $ yarn add gatsby-plugin-svgr
 ```
 
-## Using
+## Setup
 
 ### Add it to your `gatsby-config.js`
 
@@ -22,8 +24,6 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-svgr',
       options: {
-        dir: '/some/path', // only process this directory
-        // svgr options
         icon: true,
         viewBox: false,
         // see https://github.com/smooth-code/svgr for a list of all options
@@ -33,20 +33,15 @@ module.exports = {
 }
 ```
 
-### Add a `.babelrc` to the root of your project
-
-```json
-{
-  "presets": ["env", "react", "stage-0"]
-}
-```
-
-### Import your SVGs and render them as you would any React component
+## Usage
 
 ```jsx
-import Svg from 'path/to/svg/file.svg';
-import AnotherSvg from 'path/to/another/svg/file.svg';
+import starUrl, { ReactComponent as Star } from './star.svg'
 
-<Svg/>
-<AnotherSvg/>
+const App = () => (
+  <div>
+    <img src={starUrl} alt="star" />
+    <Star />
+  </div>
+)
 ```
