@@ -2,7 +2,7 @@
 
 [SVGR](https://github.com/smooth-code/svgr) plugin for [Gatsby](https://www.gatsbyjs.org)
 
-> Thse are the docs for `v1.x.x`. The docs for `v0.x.x` are [here](https://github.com/zabute/gatsby-plugin-svgr/tree/v0.x)
+> These are the docs for `v1.x.x`. The docs for `v0.x.x` are [here](https://github.com/zabute/gatsby-plugin-svgr/tree/v0.x)
 
 ## Installing
 
