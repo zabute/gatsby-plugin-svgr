@@ -19,7 +19,7 @@ exports.modifyWebpackConfig = ({ config }, options) => {
       `babel-loader?${JSON.stringify({
         presets: ['env', 'react', 'stage-0'],
       })}`,
-      `svgr/webpack?${JSON.stringify(svgrOptions)}`,
+      `@svgr/webpack?${JSON.stringify(svgrOptions)}`,
       `url?${JSON.stringify(urlQuery)}`,
     ],
   })
