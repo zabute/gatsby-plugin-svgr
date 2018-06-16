@@ -26,6 +26,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@svgr/webpack": "*"
+    "svgr": "1.10.0"
   }
 }
