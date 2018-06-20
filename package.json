@@ -23,9 +23,21 @@
   ],
   "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src --out-dir .",
+    "prepare": "cross-env NODE_ENV=production npm run build",
+    "watch": "babel -w src --out-dir ."
   },
   "dependencies": {
     "@svgr/webpack": "*"
+  },
+  "peerDependencies": {
+    "gatsby": ">2.0.0-alpha",
+    "@babel/plugin-transform-react-constant-elements": "7.0.0-beta.51"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.49",
+    "@babel/core": "^7.0.0-beta.49",
+    "@babel/preset-env": "^7.0.0-beta.49",
+    "cross-env": "^5.2.0"
   }
 }
