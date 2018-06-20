@@ -1,28 +1,52 @@
-exports.modifyWebpackConfig = ({ config }, options) => {
-  const { plugins, ...svgrOptions } = options
+const resolve = module => require.resolve(module)
 
-  const urlQuery = {
-    limit: 10000,
-    name: 'static/[name].[hash:8].[ext]',
+exports.onCreateWebpackConfig = (
+  { getConfig, actions, stage, loaders },
+  { plugins, ...svgrOptions }
+) => {
+  const { replaceWebpackConfig, setWebpackConfig } = actions
+  const existingConfig = getConfig()
+
+  // remove svg from rule that handles images
+  existingConfig.module.rules.map(x => {
+    if (
+      String(x.test) === String(/\.(ico|svg|jpg|jpeg|png|gif|webp)(\?.*)?$/)
+    ) {
+      const y = x
+      y.test = /\.(ico|jpg|jpeg|png|gif|webp)(\?.*)?$/
+      return y
+    }
+
+    return x
+  })
+
+  replaceWebpackConfig({ ...existingConfig })
+  const svgrLoader = {
+    loader: resolve(`@svgr/webpack`),
+    options: svgrOptions,
   }
 
-  config.removeLoader('url-loader')
-  config.loader('url-loader', {
-    test: /\.(jpg|jpeg|png|gif|mp4|webm|wav|mp3|m4a|aac|oga)(\?.*)?$/,
-    loader: 'url',
-    query: urlQuery,
-  })
-
-  config.loader('svgr', {
+  // add new svg rule
+  const svgrRule = {
     test: /\.svg$/,
-    loaders: [
-      `babel-loader?${JSON.stringify({
-        presets: ['env', 'react', 'stage-0'],
-      })}`,
-      `@svgr/webpack?${JSON.stringify(svgrOptions)}`,
-      `url?${JSON.stringify(urlQuery)}`,
-    ],
-  })
+    use: [svgrLoader, loaders.url({ name: 'static/[name].[hash:8].[ext]' })],
+  }
 
-  return config
+  let configRules = []
+
+  switch (stage) {
+    case `develop`:
+    case `build-javascript`:
+    case `build-html`:
+    case `develop-html`:
+      configRules = configRules.concat([svgrRule])
+      break
+    default:
+  }
+
+  setWebpackConfig({
+    module: {
+      rules: configRules,
+    },
+  })
 }
