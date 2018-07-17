@@ -4,7 +4,7 @@
   "description": "Svgr plugin for gatsby",
   "repository": {
     "type": "git",
-    "url": "https://github/com/zabute/gatsby-plugin-svgr"
+    "url": "https://github.com/zabute/gatsby-plugin-svgr"
   },
   "homepage": "https://github.com/zabute/gatsby-plugin-svgr#readme",
   "bugs": {
