@@ -7,20 +7,29 @@ exports.onCreateWebpackConfig = (
   const { replaceWebpackConfig, setWebpackConfig } = actions
   const existingConfig = getConfig()
 
-  // remove svg from rule that handles images
-  existingConfig.module.rules.map(x => {
-    if (
-      String(x.test) === String(/\.(ico|svg|jpg|jpeg|png|gif|webp)(\?.*)?$/)
+  const rules = existingConfig.module.rules.map(rule => {
+    if(
+      String(rule.test) === String(/\.(ico|svg|jpg|jpeg|png|gif|webp)(\?.*)?$/)
     ) {
-      const y = x
-      y.test = /\.(ico|jpg|jpeg|png|gif|webp)(\?.*)?$/
-      return y
+      return {
+        ...rule,
+        issuer: {
+          test: /\.(?!(js|jsx|ts|tsx)$)([^.]+$)/,
+        }
+      }
     }
 
-    return x
+    return rule
   })
 
-  replaceWebpackConfig({ ...existingConfig })
+  replaceWebpackConfig({
+    ...existingConfig,
+    module: {
+      ...existingConfig.module,
+      rules
+    }
+  })
+
   const svgrLoader = {
     loader: resolve(`@svgr/webpack`),
     options: svgrOptions,
@@ -30,6 +39,9 @@ exports.onCreateWebpackConfig = (
   const svgrRule = {
     test: /\.svg$/,
     use: [svgrLoader, loaders.url({ name: 'static/[name].[hash:8].[ext]' })],
+    issuer: {
+      test: /\.(js|jsx|ts|tsx)$/
+    },
   }
 
   let configRules = []
