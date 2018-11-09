@@ -2,7 +2,7 @@ const resolve = module => require.resolve(module)
 
 exports.onCreateWebpackConfig = (
   { getConfig, actions, stage, loaders },
-  { plugins, ...svgrOptions }
+  { plugins, include, exclude, ...svgrOptions }
 ) => {
   const { replaceWebpackConfig, setWebpackConfig } = actions
   const existingConfig = getConfig()
@@ -42,6 +42,8 @@ exports.onCreateWebpackConfig = (
     issuer: {
       test: /\.(js|jsx|ts|tsx)$/
     },
+    include,
+    exclude
   }
 
   let configRules = []
