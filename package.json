@@ -22,10 +22,8 @@
     "svgr"
   ],
   "license": "MIT",
-  "dependencies": {
-    "@svgr/webpack": "*"
-  },
   "peerDependencies": {
-    "gatsby": ">2.0.0-alpha"
+    "gatsby": ">2.0.0-alpha",
+    "@svgr/webpack": "^2.0.0"
   }
 }
