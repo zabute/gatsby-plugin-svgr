@@ -2,16 +2,16 @@
 
 [SVGR](https://github.com/smooth-code/svgr) plugin for [Gatsby](https://www.gatsbyjs.org)
 
-> These are the docs for `v1.x.x`. The docs for `v0.x.x` are [here](https://github.com/zabute/gatsby-plugin-svgr/tree/v0.x)
+> **Note**: The master branch contains the Gatsbyjs V2 compatible version of this plugin. Work on the Gatsbyjs v1 compatible version is on-going in the [v1](https://github.com/zabute/gatsby-plugin-svgr/tree/v1) branch.
 
 ## Installing
 
 ```console
-$ npm install gatsby-plugin-svgr
+$ npm install svgr gatsby-plugin-svgr
 ```
 or
 ```console
-$ yarn add gatsby-plugin-svgr
+$ yarn add svgr gatsby-plugin-svgr
 ```
 
 ## Setup
