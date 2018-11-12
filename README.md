@@ -6,6 +6,8 @@
 
 ## Installing
 
+As of v2.0.0, SVGR is declared as a [peer dependency](https://nodejs.org/en/blog/npm/peer-dependencies/). You will need to add `gatsby-plugin-svgr` as well as `svgr` to your dependencies. 
+
 ```console
 $ npm install svgr gatsby-plugin-svgr
 ```
@@ -21,15 +23,45 @@ $ yarn add svgr gatsby-plugin-svgr
 ```js
 module.exports = {
   plugins: [
+    'gatsby-plugin-svgr',
+  ],
+}
+```
+
+### Options
+
+Any options you configure `gatsby-plugin-svgr` with will be passed on to `svgr` with the exception of `include` and `exclude` (see below). You can [see a full list of SVGR options here](https://github.com/smooth-code/svgr#options) (you want the API override version). SVGR uses [SVGO](https://github.com/svg/svgo) to optimize SVGs; you can configure SVGO using `svgoConfig`; [see SVGO for a full list of configuration options](https://github.com/svg/svgo#what-it-can-do).
+
+```js
+module.exports = {
+  plugins: [
     {
       resolve: 'gatsby-plugin-svgr',
       options: {
-        icon: true,
-        viewBox: false,
-        // see https://github.com/smooth-code/svgr for a list of all options
+        prettier: true,         // use prettier to format JS code output (default)
+        svgo: true,             // use svgo to optimize SVGs (default)
+        svgoConfig: {
+          removeViewBox: true, // remove viewBox even when doing so is possible (default)
+          cleanupIDs: true,    // remove unused IDs and minify remaining IDs (default)
+        },
       },
     },
   ],
+}
+```
+
+**Note**: SVGO does not produce unique IDs when using the `cleanupIDs` option; if you're using SVGs that rely on IDs (e.g. to target template elements with `use`) and include multiple SVGs on the same page you may wish to disable the `cleanupIDs` option to prevent conflicts. Alternately you can disable `svgo` altogether and perform any optimization either manually or through another build process.
+
+### Applying SVGR to only some resources
+
+By default, SVGR is only used to load resources when loaded via JS (i.e. your stylesheets will fallback to the default loader). If you only want to apply SVGR to some resources, or you want to exclude some resources, you can pass `include` or `exclude` as options. These are passed directly to the SVGR loader as [Conditions](https://webpack.js.org/configuration/module/#condition).
+
+```js
+{
+  resolve: 'gatbsy-plugin-svgr',
+  options: {
+    exclude: /some_special_folder/,
+  },
 }
 ```
 
