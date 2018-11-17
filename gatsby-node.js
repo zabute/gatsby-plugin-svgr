@@ -13,9 +13,7 @@ exports.onCreateWebpackConfig = (
     ) {
       return {
         ...rule,
-        issuer: {
-          test: /\.(?!(js|jsx|ts|tsx)$)([^.]+$)/,
-        }
+        test: /\.(ico|jpg|jpeg|png|gif|webp)(\?.*)?$/
       }
     }
 
@@ -30,20 +28,40 @@ exports.onCreateWebpackConfig = (
     }
   })
 
+  const urlLoader = loaders.url({ name: 'static/[name].[hash:8].[ext]' })
+
+  // for non-javascript issuers
+  const nonJs = {
+    test: /\.svg$/,
+    use: [urlLoader],
+    issuer: {
+      test: /\.(?!(js|jsx|ts|tsx)$)([^.]+$)/,
+    },
+  }
+
   const svgrLoader = {
     loader: resolve(`@svgr/webpack`),
     options: svgrOptions,
   }
-
+  
   // add new svg rule
   const svgrRule = {
     test: /\.svg$/,
-    use: [svgrLoader, loaders.url({ name: 'static/[name].[hash:8].[ext]' })],
+    use: [svgrLoader, urlLoader],
     issuer: {
       test: /\.(js|jsx|ts|tsx)$/
     },
     include,
     exclude
+  }
+  
+  // for excluded assets
+  const excludedRule = {
+    test: /\.svg$/,
+    use: urlLoader,
+    issuer: svgrRule.issuer,
+    include: exclude,
+    exclude: include,
   }
 
   let configRules = []
@@ -53,7 +71,11 @@ exports.onCreateWebpackConfig = (
     case `build-javascript`:
     case `build-html`:
     case `develop-html`:
-      configRules = configRules.concat([svgrRule])
+      if(include || exclude) {
+        configRules = configRules.concat([excludedRule])
+      }
+
+      configRules = configRules.concat([nonJs, svgrRule])
       break
     default:
   }
