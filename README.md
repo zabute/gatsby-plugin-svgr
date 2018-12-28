@@ -58,7 +58,7 @@ By default, SVGR is only used to load resources when loaded via JS (i.e. your st
 
 ```js
 {
-  resolve: 'gatbsy-plugin-svgr',
+  resolve: 'gatsby-plugin-svgr',
   options: {
     exclude: /some_special_folder/,
   },
