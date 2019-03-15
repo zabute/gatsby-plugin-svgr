@@ -6,7 +6,7 @@
 
 ## Installing
 
-As of v2.0.0, SVGR is declared as a [peer dependency](https://nodejs.org/en/blog/npm/peer-dependencies/). You will need to add `gatsby-plugin-svgr` as well as `@svgr/webpack` to your dependencies. 
+As of v2.0, SVGR is declared as a [peer dependency](https://nodejs.org/en/blog/npm/peer-dependencies/). You will need to add `gatsby-plugin-svgr` as well as `@svgr/webpack` to your dependencies.
 
 ```console
 $ npm install @svgr/webpack gatsby-plugin-svgr
@@ -41,7 +41,7 @@ module.exports = {
         prettier: true,         // use prettier to format JS code output (default)
         svgo: true,             // use svgo to optimize SVGs (default)
         svgoConfig: {
-          removeViewBox: true, // remove viewBox even when doing so is possible (default)
+          removeViewBox: true, // remove viewBox when possible (default)
           cleanupIDs: true,    // remove unused IDs and minify remaining IDs (default)
         },
       },
