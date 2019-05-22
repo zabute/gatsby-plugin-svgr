@@ -1,8 +1,7 @@
 # gatsby-plugin-svgr [![npm version](https://badge.fury.io/js/gatsby-plugin-svgr.svg)](https://badge.fury.io/js/gatsby-plugin-svgr)
 
-[SVGR](https://github.com/smooth-code/svgr) plugin for [Gatsby](https://www.gatsbyjs.org)
+[SVGR](https://github.com/smooth-code/svgr) plugin for [Gatsby v2.0+](https://www.gatsbyjs.org). Still rocking Gatsby v1?  [See the v1 branch](https://github.com/zabute/gatsby-plugin-svgr/tree/v1) instead.
 
-> **Note**: The master branch contains the Gatsbyjs V2 compatible version of this plugin. Work on the Gatsbyjs v1 compatible version is on-going in the [v1](https://github.com/zabute/gatsby-plugin-svgr/tree/v1) branch.
 
 ## Installing
 
@@ -29,6 +28,8 @@ module.exports = {
 ```
 
 ### Options
+
+**Note: If you need to configure SVGO, [we recommended this approach](https://github.com/zabute/gatsby-plugin-svgr/issues/38#issuecomment-494601002) instead of the below.** Documentation update to follow.
 
 Any options you configure `gatsby-plugin-svgr` with will be passed on to `svgr` with the exception of `include` and `exclude` (see below). You can [see a full list of SVGR options here](https://github.com/smooth-code/svgr#options) (you want the API override version). SVGR uses [SVGO](https://github.com/svg/svgo) to optimize SVGs; you can configure SVGO using `svgoConfig`; [see SVGO for a full list of configuration options](https://github.com/svg/svgo#what-it-can-do).
 
