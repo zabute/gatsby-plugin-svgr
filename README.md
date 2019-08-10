@@ -7,11 +7,11 @@
 
 As of v2.0, SVGR is declared as a [peer dependency](https://nodejs.org/en/blog/npm/peer-dependencies/). You will need to add `gatsby-plugin-svgr` as well as `@svgr/webpack` to your dependencies.
 
-```console
+```shell
 $ npm install @svgr/webpack gatsby-plugin-svgr
 ```
 or
-```console
+```shell
 $ yarn add @svgr/webpack gatsby-plugin-svgr
 ```
 
