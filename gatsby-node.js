@@ -1,4 +1,4 @@
-const resolve = module => require.resolve(module)
+const resolve = (module) => require.resolve(module)
 
 exports.onCreateWebpackConfig = (
   { getConfig, actions, stage, loaders },
@@ -7,13 +7,25 @@ exports.onCreateWebpackConfig = (
   const { replaceWebpackConfig, setWebpackConfig } = actions
   const existingConfig = getConfig()
 
-  const rules = existingConfig.module.rules.map(rule => {
-    if(
-      String(rule.test) === String(/\.(ico|svg|jpg|jpeg|png|gif|webp|avif)(\?.*)?$/)
+  const rules = existingConfig.module.rules.map((rule) => {
+    // Gatsby < 2.3.0 (no AVIF support)
+    if (
+      String(rule.test) === String(/\.(ico|svg|jpg|jpeg|png|gif|webp)(\?.*)?$/)
     ) {
       return {
         ...rule,
-        test: /\.(ico|jpg|jpeg|png|gif|webp|avif)(\?.*)?$/
+        test: /\.(ico|jpg|jpeg|png|gif|webp)(\?.*)?$/,
+      }
+    }
+
+    // Gatsby ≥ 2.3.0 (AVIF support)
+    if (
+      String(rule.test) ===
+      String(/\.(ico|svg|jpg|jpeg|png|gif|webp|avif)(\?.*)?$/)
+    ) {
+      return {
+        ...rule,
+        test: /\.(ico|jpg|jpeg|png|gif|webp|avif)(\?.*)?$/,
       }
     }
 
@@ -24,11 +36,11 @@ exports.onCreateWebpackConfig = (
     ...existingConfig,
     module: {
       ...existingConfig.module,
-      rules
-    }
+      rules,
+    },
   })
 
-  const urlLoader = loaders.url({ name: 'static/[name].[hash:8].[ext]' })
+  const urlLoader = loaders.url({ name: "static/[name].[hash:8].[ext]" })
 
   // for non-javascript issuers
   const nonJs = {
@@ -43,18 +55,18 @@ exports.onCreateWebpackConfig = (
     loader: resolve(`@svgr/webpack`),
     options: svgrOptions,
   }
-  
+
   // add new svg rule
   const svgrRule = {
     test: /\.svg$/,
     use: [svgrLoader, urlLoader],
     issuer: {
-      test: /\.(js|jsx|ts|tsx)$/
+      test: /\.(js|jsx|ts|tsx)$/,
     },
     include,
-    exclude
+    exclude,
   }
-  
+
   // for excluded assets
   const excludedRule = {
     test: /\.svg$/,
@@ -71,7 +83,7 @@ exports.onCreateWebpackConfig = (
     case `build-javascript`:
     case `build-html`:
     case `develop-html`:
-      if(include || exclude) {
+      if (include || exclude) {
         configRules = configRules.concat([excludedRule])
       }
 
