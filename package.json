@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-svgr",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "SVGR plugin for Gatsby",
   "repository": {
     "type": "git",
