@@ -25,6 +25,6 @@
   "license": "MIT",
   "peerDependencies": {
     "@svgr/webpack": ">=2.0.0",
-    "gatsby": ">=2.0.0"
+    "gatsby": "^3.0.0"
   }
 }
