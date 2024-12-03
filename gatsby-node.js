@@ -47,7 +47,7 @@ exports.onCreateWebpackConfig = (
 
   // for non-javascript issuers
   const nonJs = {
-    test: /\.svg$/,
+    test: /\.svg(\?.*)?$/,
     use: [urlLoader],
     issuer: {
       test: /\.(?!(js|jsx|ts|tsx)$)([^.]+$)/,
@@ -61,7 +61,7 @@ exports.onCreateWebpackConfig = (
 
   // add new svg rule
   const svgrRule = {
-    test: /\.svg$/,
+    test: /\.svg(\?.*)?$/,
     use: [svgrLoader, urlLoader],
     issuer: {
       test: /\.(js|jsx|ts|tsx)$/,
@@ -72,7 +72,7 @@ exports.onCreateWebpackConfig = (
 
   // for excluded assets
   const excludedRule = {
-    test: /\.svg$/,
+    test: /\.svg(\?.*)?$/,
     use: urlLoader,
     issuer: svgrRule.issuer,
     include: exclude,
