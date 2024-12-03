@@ -2,30 +2,26 @@ const resolve = (module) => require.resolve(module)
 
 exports.onCreateWebpackConfig = (
   { getConfig, actions, stage, loaders },
-  { plugins, include, exclude, ...svgrOptions }
+  {
+    plugins,
+    include,
+    exclude,
+    originalGatsbyImagesRuleTest = /\.(ico|svg|jpg|jpeg|png|gif|webp|avif)(\?.*)?$/,
+    newGatsbyImagesRuleTest  = /\.(ico|jpg|jpeg|png|gif|webp|avif)(\?.*)?$/,
+    nonJsRuleIssuer = { and: [/\.(?!(js|jsx|ts|tsx)$)([^.]+$)/] },
+    svgrRuleIssuer = { and: [/\.(js|jsx|ts|tsx)$/] },
+    ...svgrOptions
+  }
 ) => {
   const { replaceWebpackConfig, setWebpackConfig } = actions
   const existingConfig = getConfig()
 
   const rules = existingConfig.module.rules.map((rule) => {
-    // Gatsby < 2.3.0 (no AVIF support)
-    if (
-      String(rule.test) === String(/\.(ico|svg|jpg|jpeg|png|gif|webp)(\?.*)?$/)
-    ) {
+    // see: https://github.com/gatsbyjs/gatsby/blob/18482b123ec87e76cdc738180a1314ea81ad7afa/packages/gatsby/src/utils/webpack-utils.ts#L556
+    if (String(rule.test) === String(originalGatsbyImagesRuleTest)) {
       return {
         ...rule,
-        test: /\.(ico|jpg|jpeg|png|gif|webp)(\?.*)?$/,
-      }
-    }
-
-    // Gatsby ≥ 2.3.0 (AVIF support)
-    if (
-      String(rule.test) ===
-      String(/\.(ico|svg|jpg|jpeg|png|gif|webp|avif)(\?.*)?$/)
-    ) {
-      return {
-        ...rule,
-        test: /\.(ico|jpg|jpeg|png|gif|webp|avif)(\?.*)?$/,
+        test: newGatsbyImagesRuleTest,
       }
     }
 
@@ -49,9 +45,7 @@ exports.onCreateWebpackConfig = (
   const nonJs = {
     test: /\.svg$/,
     use: [urlLoader],
-    issuer: {
-      test: /\.(?!(js|jsx|ts|tsx)$)([^.]+$)/,
-    },
+    issuer: nonJsRuleIssuer,
   }
 
   const svgrLoader = {
@@ -63,9 +57,7 @@ exports.onCreateWebpackConfig = (
   const svgrRule = {
     test: /\.svg$/,
     use: [svgrLoader, urlLoader],
-    issuer: {
-      test: /\.(js|jsx|ts|tsx)$/,
-    },
+    issuer: svgrRuleIssuer,
     include,
     exclude,
   }
