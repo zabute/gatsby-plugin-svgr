@@ -40,7 +40,10 @@ exports.onCreateWebpackConfig = (
     },
   })
 
-  const urlLoader = loaders.url({ name: "static/[name].[hash:8].[ext]" })
+  const urlLoader = loaders.url({ 
+    name: "static/[name].[hash:8].[ext]",
+    limit: 10000,
+  })
 
   // for non-javascript issuers
   const nonJs = {
