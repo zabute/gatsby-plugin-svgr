@@ -50,7 +50,7 @@ exports.onCreateWebpackConfig = (
     test: /\.svg$/,
     use: [urlLoader],
     issuer: {
-      test: /\.(?!(js|jsx|ts|tsx)$)([^.]+$)/,
+      and: [/\.(?!(js|jsx|ts|tsx)$)([^.]+$)/],
     },
   }
 
@@ -64,7 +64,7 @@ exports.onCreateWebpackConfig = (
     test: /\.svg$/,
     use: [svgrLoader, urlLoader],
     issuer: {
-      test: /\.(js|jsx|ts|tsx)$/,
+      and: [/\.(js|jsx|ts|tsx)$/],
     },
     include,
     exclude,
